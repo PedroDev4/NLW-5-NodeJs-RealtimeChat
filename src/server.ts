@@ -1,22 +1,12 @@
-import { json } from 'body-parser';
-import express, { request, response } from 'express';
+import express from 'express';
+import "reflect-metadata";
+import "./database"; // Importando o Index database 
+import { routes } from './routes'
 
 const app = express();
 
-app.use(json());
-
-app.get("/", (request, response) => {
-    return response.json({
-        message: "NLW 05",
-    });
-});
-
-app.post("/users", (request, response) => {
-    return response.json({
-        message: "User successifuly created!",
-    })
-});
-
+app.use(express.json());
+app.use(routes);
 app.listen(3333, () => {
-    console.log("Server is running! Port: 3333");
-});
+    console.log("Server is Running! Port: 3333 ");
+})
