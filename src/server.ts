@@ -1,12 +1,6 @@
-import express from 'express';
-import "reflect-metadata";
-import "./database"; // Importando o Index database 
-import { routes } from './routes'
+import { http } from "./app";
+import "./websocket/client";
 
-const app = express();
-
-app.use(express.json());
-app.use(routes);
-app.listen(3333, () => {
-    console.log("Server is Running! Port: 3333 ");
+http.listen(3333, () => {
+    console.log("Server is Running! Port: 3333 "); // Subindo servidor do WS junto com HTTP 
 })
