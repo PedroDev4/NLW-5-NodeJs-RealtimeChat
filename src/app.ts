@@ -17,6 +17,10 @@ app.get("/pages/client", (request, response) => {
     return response.render("html/client.html"); //`pedindo para a rota renderizar a html page
 });
 
+app.get("/pages/admin", (request, response) => {
+    return response.render("html/admin.html"); //`pedindo para a rota renderizar a html page
+});
+
 const http = createServer(app); // Criando server protocolo HTTP
 const io = new Server(http) // Criando o server protocolo WS (WebSocket)
 

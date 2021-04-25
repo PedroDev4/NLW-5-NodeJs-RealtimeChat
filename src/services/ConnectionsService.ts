@@ -36,6 +36,31 @@ class ConnectionsService {
 
         return connection;
     }
+
+    async findAllWithoutAdmin(): Promise<Connection[]> {
+        const connections = await this.repository.find({
+            where: { admin_id: null },
+            relations: ["user"],
+        });
+
+        return connections;
+    }
+
+    async findConnectionBySocketId(socket_id: string): Promise<Connection> {
+        const connection = await this.repository.findOne({
+            socket_id,
+        });
+
+        return connection;
+    }
+
+    async updateConectionWithAdmin(user_id: string, admin_id: string) {
+        await this.repository.createQueryBuilder()
+            .update(Connection) // Entidade a ser alterada no Database
+            .set({ admin_id }) // O que eu quero alterar
+            .where("user_id = :user_id", { user_id }) // Onder o user_id é igual ao user_id recebido
+            .execute()
+    }
 }
 
 export { ConnectionsService };

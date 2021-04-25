@@ -38,6 +38,14 @@ class UsersService {
         return user;
     }
 
+    async findByUserId(user_id: string): Promise<User> {
+        const user = await this.repository.findOne({
+            id: user_id,
+        });
+
+        return user;
+    }
+
 }
 
 export { UsersService };
